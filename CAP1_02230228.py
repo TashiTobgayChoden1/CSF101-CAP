@@ -1,3 +1,4 @@
+'''
  #name: Tashi Tobgay Choden,
  #section: 1ICE
  #StudentIDNumber: 02230228
@@ -10,6 +11,7 @@
  #SOLUTION:
  #your solution score: 49843
  #input_8_cap1
+'''
  
 
  #codeheretoreadyourinputfile
