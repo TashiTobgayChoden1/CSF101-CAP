@@ -13,36 +13,33 @@
  #input_8_cap1
  
 
- #codeheretoreadyourinputfile
-def calculate_score(rivals_choice, result):
-    choice_score = {'A': 1, 'B': 2, 'C': 3}
-    outcome_score = {'X': 0, 'Y': 3, 'Z': 6}
-    my_choice = None
+def compute_round_score(opponent_move, desired_outcome):
+    move_scores = {'A': 1, 'B': 2, 'C': 3}
+    outcome_scores = {'X': 0, 'Y': 3, 'Z': 6}
+    player_move = None
 
-    if result == 'Y':  # Draw
-        my_choice = rivals_choice
-    elif result == 'Z':  # Win
-        if rivals_choice == 'A':
-            my_choice = 'B'
-        elif rivals_choice == 'B':
-            my_choice = 'C'
+    if desired_outcome == 'Y':  # Draw
+        player_move = opponent_move
+    elif desired_outcome == 'Z':  # Win
+        if opponent_move == 'A':
+            player_move = 'B'
+        elif opponent_move == 'B':
+            player_move = 'C'
         else:
-            my_choice = 'A'
+            player_move = 'A'
     else:  # Lose
-        if rivals_choice == 'A':
-            my_choice = 'C'
-        elif rivals_choice == 'B':
-            my_choice = 'A'
+        if opponent_move == 'A':
+            player_move = 'C'
+        elif opponent_move == 'B':
+            player_move = 'A'
         else:
-            my_choice = 'B'
+            player_move = 'B'
 
-    return choice_score[my_choice] + outcome_score[result]
+    return move_scores[player_move] + outcome_scores[desired_outcome]
 
-total_score = 0
-with open('CSF101-CAP/input_8_cap1.txt', 'r') as file:
-    for line in file:
-        rivals_choice, result = line.strip().split()
-        round_score = calculate_score(rivals_choice, result)
-        total_score += round_score
+total_score = sum(
+    compute_round_score(opponent_move, desired_outcome)
+    for opponent_move, desired_outcome in (line.strip().split() for line in open('CSF101-CAP/input_8_cap1.txt'))
+)
 
 print(f"Total score: {total_score}")
