@@ -1,4 +1,4 @@
-'''
+
  #name: Tashi Tobgay Choden,
  #section: 1ICE
  #StudentIDNumber: 02230228
@@ -11,15 +11,14 @@
  #SOLUTION:
  #your solution score: 49843
  #input_8_cap1
-'''
  
 
  #codeheretoreadyourinputfile
 def calculate_score(rivals_choice, result):
     choice_score = {'A': 1, 'B': 2, 'C': 3}
     outcome_score = {'X': 0, 'Y': 3, 'Z': 6}
-    
-    my_choice_choice = None
+    my_choice = None
+
     if result == 'Y':  # Draw
         my_choice = rivals_choice
     elif result == 'Z':  # Win
@@ -36,18 +35,14 @@ def calculate_score(rivals_choice, result):
             my_choice = 'A'
         else:
             my_choice = 'B'
-    
+
     return choice_score[my_choice] + outcome_score[result]
 
-def main():
-    total_score = 0
-    with open('CSF101-CAP/input_8_cap1.txt', 'r') as file:
-        for line in file:
-            rivals_choice, result = line.strip().split()
-            round_score = calculate_score(rivals_choice, result)
-            total_score += round_score
-    
-    print(f"Total score: {total_score}")
+total_score = 0
+with open('CSF101-CAP/input_8_cap1.txt', 'r') as file:
+    for line in file:
+        rivals_choice, result = line.strip().split()
+        round_score = calculate_score(rivals_choice, result)
+        total_score += round_score
 
-if __name__ == "__main__":
-    main()
+print(f"Total score: {total_score}")
